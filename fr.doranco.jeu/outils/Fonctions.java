@@ -36,7 +36,7 @@ public final class Fonctions {
     }
 
     public static String sisirTexte(String question) {
-        System.out.println(question + " > ");
+        System.out.print(question + " > ");
         String texte = scan.nextLine();
         return texte;
     }
@@ -46,7 +46,7 @@ public final class Fonctions {
         Integer nb = null;
         do {
             try {
-                System.out.println(question + " > ");
+                System.out.print(question + " > ");
                 String str = scan.nextLine();
                 nb = Integer.parseInt(str);
             } catch (InputMismatchException e) {
@@ -85,7 +85,7 @@ public final class Fonctions {
         System.out.println("1 -> Guerrier");
         System.out.println("2 -> Mage");
 
-        int choix = sisirEntier("choix? : ");
+        int choix = sisirEntier("choix? 1 ou 2 : ");
 
         switch (choix) {
             case 1:

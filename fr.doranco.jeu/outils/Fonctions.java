@@ -25,13 +25,13 @@ public final class Fonctions {
             System.out.println("Points de vie restant pour " + p1.getNom() + ": " + p1.getDureeDeVie());
 
         }
-        if (p1.getDureeDeVie() <= 0)
-            System.out.println("\nLe ganant est : \n" + p2.fiche());
+        if (p1.getDureeDeVie() <= 0 && p2.getDureeDeVie() <= 0)
+            System.out.println("Le deux personnage sont entretués!!!");
+        else if (p1.getDureeDeVie() <= 0)
+            System.out.println("\nLe vainqueur est : \n" + p2.fiche());
 
         else if (p2.getDureeDeVie() <= 0)
-            System.out.println("\nLe ganant est : \n" + p1.fiche());
-        else
-            System.out.println("Egalité");
+            System.out.println("\nLe vainqueur est : \n" + p1.fiche());
 
     }
 
@@ -64,45 +64,45 @@ public final class Fonctions {
     }
 
     public static int sisairProprietesEntier(int min, int max, String propriete) {
-        int entry;
+        int entree;
         do {
-            entry = sisirEntier(propriete + " : ");
+            entree = sisirEntier(propriete);
 
-        } while (entry < min || entry > max);
-        return entry;
+        } while (entree < min || entree > max);
+        return entree;
     }
 
     public static String sisairProprietesStrNonvide(String propriete) {
-        String entry;
+        String entree;
         do {
-            entry = sisirTexte(propriete + " : ");
+            entree = sisirTexte(propriete);
 
-        } while (entry == null);
-        return entry;
+        } while (entree == null);
+        return entree;
     }
 
     public static Personnage choixPersonnage() {
         System.out.println("1 -> Guerrier");
         System.out.println("2 -> Mage");
-        System.out.println("totobefore");
+
         int choix = sisirEntier("choix? : ");
-        System.out.println("after");
+
         switch (choix) {
             case 1:
-                Personnage conan = new Guerrier();
-                conan.setNom(sisairProprietesStrNonvide("nom : "));
-                conan.setForce(sisairProprietesEntier(1, 20, "Force : "));
-                conan.setDureeDeVie(sisairProprietesEntier(50, 200, "Vie : "));
-                ((Guerrier) conan).setArmature(sisairProprietesEntier(1, 5, "Armure : "));
-                return conan;
+                Personnage guerrier = new Guerrier();
+                guerrier.setNom(sisairProprietesStrNonvide("nom : "));
+                guerrier.setForce(sisairProprietesEntier(1, 20, "Force : "));
+                guerrier.setDureeDeVie(sisairProprietesEntier(50, 200, "Vie : "));
+                ((Guerrier) guerrier).setArmature(sisairProprietesEntier(1, 5, "Armure : "));
+                return guerrier;
 
             case 2:
-                Personnage gandalf = new Mage();
-                gandalf.setNom(sisairProprietesStrNonvide("nom : "));
-                gandalf.setForce(sisairProprietesEntier(1, 20, "Force : "));
-                gandalf.setDureeDeVie(sisairProprietesEntier(50, 200, "Vie : "));
-                ((Mage) gandalf).setMana(sisairProprietesEntier(1, 100, "Mana : "));
-                return gandalf;
+                Personnage mage = new Mage();
+                mage.setNom(sisairProprietesStrNonvide("nom : "));
+                mage.setForce(sisairProprietesEntier(1, 10, "Force : "));
+                mage.setDureeDeVie(sisairProprietesEntier(50, 200, "Vie : "));
+                ((Mage) mage).setMana(sisairProprietesEntier(1, 100, "Mana : "));
+                return mage;
 
             default:
                 return null;

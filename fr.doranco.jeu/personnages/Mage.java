@@ -41,9 +41,13 @@ public class Mage extends Personnage implements ILanceur {
             degats = this.getForce();
         else
             degats = this.getForce() / 2;
+        if (cible instanceof ILanceur)
+            cible.setDureeDeVie(cible.getDureeDeVie() - degats);
+        else
+            cible.esquiver(degats);
 
-        cible.setDureeDeVie(cible.getDureeDeVie() - degats);
         this.setMana(this.getMana() - degats);
+
     }
 
     @Override

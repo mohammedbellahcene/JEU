@@ -6,12 +6,13 @@ public class Mage extends Personnage implements ILanceur {
     private int mana;
 
     public Mage() {
-        super();
+
     }
 
     public Mage(String nom, String metier, int force, int dureeDeVie, int mana) {
         super(nom, metier, force, dureeDeVie);
         this.mana = mana;
+        this.setForce(force);
     }
 
     public int getMana() {
@@ -27,14 +28,22 @@ public class Mage extends Personnage implements ILanceur {
                 + "\tPoints de mana : " + this.mana + "\n";
     }
 
+    @Override
     public void attaquer(Personnage cible) {
         int degats;
         if (this.getMana() >= 100) {
             degats = this.getForce() * 4;
         } else if (this.getMana() >= 51 && this.getMana() < 100)
             degats = this.getForce() * 3;
+        else if (this.getMana() >= 21 && this.getMana() < 50)
+            degats = this.getForce() * 2;
+        else if (this.getMana() > 0 && this.getMana() < 21)
+            degats = this.getForce();
+        else
+            degats = this.getForce() / 2;
 
-        cible.setDureeDeVie(cible.getDureeDeVie() - this.getForce());
+        cible.setDureeDeVie(cible.getDureeDeVie() - degats);
+        this.setMana(this.getMana() - degats);
     }
 
     @Override

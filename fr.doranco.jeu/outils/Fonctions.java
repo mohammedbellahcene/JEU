@@ -20,13 +20,19 @@ public final class Fonctions {
         while (p1.getDureeDeVie() > 0 && p2.getDureeDeVie() > 0) {
             p1.attaquer(p2);
             p2.attaquer(p1);
+            if (p1.getDureeDeVie() < 0)
+                p1.setDureeDeVie(0);
+            if (p2.getDureeDeVie() < 0)
+                p2.setDureeDeVie(0);
             System.out.println("Tour" + tour++);
             System.out.println("Points de vie restant pour " + p2.getNom() + ": " + p2.getDureeDeVie());
             System.out.println("Points de vie restant pour " + p1.getNom() + ": " + p1.getDureeDeVie());
 
         }
-        if (p1.getDureeDeVie() <= 0 && p2.getDureeDeVie() <= 0)
+        if (p1.getDureeDeVie() <= 0 && p2.getDureeDeVie() <= 0) {
             System.out.println("Le deux personnage sont entretués!!!");
+        }
+
         else if (p1.getDureeDeVie() <= 0)
             System.out.println("\nLe vainqueur est : \n" + p2.fiche());
 
@@ -91,7 +97,7 @@ public final class Fonctions {
             case 1:
                 Personnage guerrier = new Guerrier();
                 guerrier.setNom(sisairProprietesStrNonvide("nom : "));
-                guerrier.setForce(sisairProprietesEntier(1, 20, "Force : "));
+                guerrier.setForce(sisairProprietesEntier(Personnage.FORCE_MIN, Personnage.FORCE_MAX, "Force : "));
                 guerrier.setDureeDeVie(sisairProprietesEntier(50, 200, "Vie : "));
                 ((Guerrier) guerrier).setArmature(sisairProprietesEntier(1, 5, "Armure : "));
                 return guerrier;
@@ -99,7 +105,7 @@ public final class Fonctions {
             case 2:
                 Personnage mage = new Mage();
                 mage.setNom(sisairProprietesStrNonvide("nom : "));
-                mage.setForce(sisairProprietesEntier(1, 10, "Force : "));
+                mage.setForce(sisairProprietesEntier(Personnage.FORCE_MIN, Mage.FORCE_MAX, "Force : "));
                 mage.setDureeDeVie(sisairProprietesEntier(50, 200, "Vie : "));
                 ((Mage) mage).setMana(sisairProprietesEntier(1, 100, "Mana : "));
                 return mage;

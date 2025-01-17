@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-
+        System.out.println(5 / 2.);
         Personnage p1 = Fonctions.choixPersonnage();
         Personnage p2 = Fonctions.choixPersonnage();
         Fonctions.combat(p1, p2);

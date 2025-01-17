@@ -3,6 +3,7 @@ package personnages;
 import categories.*;
 
 public class Mage extends Personnage implements ILanceur {
+    public static final int FORCE_MAX = 10;
     private int mana;
 
     public Mage() {
@@ -33,14 +34,16 @@ public class Mage extends Personnage implements ILanceur {
         int degats;
         if (this.getMana() >= 100) {
             degats = this.getForce() * 4;
-        } else if (this.getMana() >= 51 && this.getMana() < 100)
+        } else if (this.getMana() >= 50)
             degats = this.getForce() * 3;
-        else if (this.getMana() >= 21 && this.getMana() < 50)
+        else if (this.getMana() >= 20)
             degats = this.getForce() * 2;
-        else if (this.getMana() > 0 && this.getMana() < 21)
+        else if (this.getMana() > 0)
             degats = this.getForce();
         else
             degats = this.getForce() / 2;
+
+        degats = this.mana < degats ? this.mana : degats;
         if (cible instanceof ILanceur)
             cible.setDureeDeVie(cible.getDureeDeVie() - degats);
         else

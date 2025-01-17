@@ -6,7 +6,7 @@ import categories.Race;
 
 public abstract class Personnage implements Cloneable {
     public static final int FORCE_MAX = 20;
-    public static final int FORCE_MIN = 20;
+    public static final int FORCE_MIN = 1;
     private String nom;
     private String metier;
     private int force;
